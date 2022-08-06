@@ -1,0 +1,15 @@
+.form label{
+    width: 100%;
+    margin-right: 100%;
+}
+
+.form input {
+    margin-right:100% ;
+    border-radius: 15px;
+}
+
+.form .submit-button{
+    margin-left: 35%;
+    margin-right: 35%;
+    margin-top: 5px;
+}

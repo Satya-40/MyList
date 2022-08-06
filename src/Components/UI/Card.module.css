@@ -1,0 +1,39 @@
+.card{
+    background-color: rgb(202, 255, 255);
+    padding: 1rem;
+    text-align: center;
+
+}
+
+.card li{
+    text-align: left;
+    background-color: aliceblue;
+    margin-left: 25%;
+    margin-right: 25%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    padding: 10px;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card li img {
+    height: 80px;
+    width: 45px;
+}
+
+.card li p {
+    align-items: left;
+
+    padding: 15px;
+}
+
+@media only screen and (max-width: 760px) {
+    .card li {
+        margin-left: 10px;
+        margin-right: 10px;
+  }
+}
