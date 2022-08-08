@@ -1,22 +1,48 @@
-import { useEffect, useState } from 'react'
+import {  useEffect, useState } from 'react'
+import auth from '../../FirebaseConfig'
 import classes from './NavBar.module.css'
 
-const NavBar = (props) => {
-  const [loginClicked, setLoginClicked] = useState(false)
 
-    const loginButtonClickHandler=() => {
-      setLoginClicked(!loginClicked)
-      props.onLogin(loginClicked)
+const NavBar = (props) => {
+    const [user, setUser] = useState({})
+
+    const change = () => {
+      auth.onAuthStateChanged((user)=>{
+        setUser(user)
+      })
     }
 
-    useEffect(()=>{},[])
+    useEffect(()=>{change()},[user])
 
-    return (<div className={classes.unlis}>
-        <div className={classes.lis}><button className={classes.active} >Home</button></div>
-        <div className={classes.lis}><button >News</button></div>
-        <div className={classes.lis}><button >Contact</button></div>
-        <div className={classes['lis-Login']} id='signInDiv' ><button onClick={loginButtonClickHandler}>Login</button></div>
-      </div>)
+
+    const signOutHandler =  (auth) => {
+        user.auth.signOut()
+    }
+
+
+    return (
+      <div className={classes.unlis}>
+        <div className={classes.lis}>
+          <button className={classes.active}>Home</button>
+        </div>
+        <div className={classes.lis}>
+          <button>News</button>
+        </div>
+        <div className={classes.lis}>
+          <button>Contact</button>
+        </div>
+        {user ? (
+          <div className={classes["lis-Login"]}>
+            <button onClick={signOutHandler}>Sign Out</button>
+          </div>
+        ) : (
+          <div className={classes["lis-Login"]}>
+            <button onClick={props.onLogin}>Login</button>
+          </div>
+        )}
+        <span className={classes.id}>{user?.email}</span>
+      </div>
+    );
 }
 
 export default NavBar

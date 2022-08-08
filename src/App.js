@@ -1,26 +1,46 @@
-import { Fragment,  useCallback,    useState } from 'react';
+import { Fragment, useState } from 'react';
 import './App.css';
 import Login from './Components/Login';
+import Register from './Components/Register';
 import SearchBar from './Components/SearchBar';
 import SearchResult from './Components/SearchResults';
 import NavBar from './Components/UI/NavBar';
 
+
 function App() {
   const [input, setInput] = useState([])
-  const [loginClick, setLoginClick] = useState(false)
+  const [loginShower, setLoginShower] = useState(null)
+  const [registerShower, setRegisterShower] = useState(null)
   
 
   const setInputHandler = data => {
     setInput(data)
   }
 
-  const loginHandler = useCallback(async(loginState) => {
-    setLoginClick(loginState);
-  },[]);
+  const loginHandler = () => {
+    console.log('Happening');
+    setRegisterShower(false)
+    setLoginShower(true);
+  };
+
+  const hideLoginHandler = () =>{
+    setLoginShower(false)
+  }
+
+  const registerHandler = ()=> {
+    setLoginShower(false)
+    setRegisterShower(true)
+  }
+ 
+
+  const hideRegisterHandler = () => {
+    setRegisterShower(false)
+  }
 
   return (
     <Fragment>
-        {loginClick && <Login/>}
+        {registerShower && <Register onClose={hideRegisterHandler} onLogin={loginHandler}/>}
+        {loginShower && <Login onClose={hideLoginHandler} onRegister={registerHandler}/>}
         <NavBar onLogin={loginHandler} />
         <SearchBar setData={setInputHandler} />
         <SearchResult input = {input}/>

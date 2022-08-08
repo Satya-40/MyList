@@ -4,21 +4,17 @@ import classes from "./SearchResults.module.css";
 const SearchResult = (props) => {
   const data = props.input;
 
-
-
   return (
     <Card>
-      {data.map((item) => {
-          const addToListHandler = type => {
-            console.log(item.id , type)
-          }
+      {data?.map((item) => {
+        const addToListHandler = (type) => {
+          console.log(item.id, type);
+        };
         return (
           <li key={item.id}>
             {" "}
             <img
-              src={`${
-                item.volumeInfo.imageLinks?.smallThumbnail
-                  }`}
+              src={`${item.volumeInfo.imageLinks?.smallThumbnail}`}
               alt={item.title}
             />{" "}
             <p>{item.volumeInfo.title}</p>
