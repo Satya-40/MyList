@@ -1,14 +1,44 @@
 import Card from "./UI/Card";
 import classes from "./SearchResults.module.css";
+import auth from "../FirebaseConfig";
+import {  useEffect, useState } from "react";
+
 
 const SearchResult = (props) => {
   const data = props.input;
+  const [user, setUser] = useState({})
+
+  const change = () =>  {
+      auth.onAuthStateChanged((user)=>{
+        setUser(user)
+      })
+    }
+
+    useEffect(()=>{change()},[user])
 
   return (
+    
     <Card>
       {data?.map((item) => {
-        const addToListHandler = (type) => {
-          console.log(item.id, type);
+        const AddToListHandler = async (type) => {
+          if (user) {
+          console.log(user.email, item.id, type);
+          const send = await fetch(`https://mylist-9aec0-default-rtdb.firebaseio.com/list/${user.uid}.json`,{
+            method:'POST',
+            body: JSON.stringify({
+              id: (item.id),
+              stage: (type),
+              }),
+              headers:{
+                'Content-Type':'application/json'
+              }
+          })
+          const result = send.json()
+          console.log(result)
+          } else {
+            console.log('Please log in to use add items to your list')
+          }
+
         };
         return (
           <li key={item.id}>
@@ -23,21 +53,21 @@ const SearchResult = (props) => {
               <div className={classes["dropdown-content"]}>
                 <button
                   onClick={() => {
-                    addToListHandler("Watching");
+                    AddToListHandler("Watching");
                   }}
                 >
                   Watching
                 </button>
                 <button
                   onClick={() => {
-                    addToListHandler("Watched");
+                    AddToListHandler("Watched");
                   }}
                 >
                   Watched
                 </button>
                 <button
                   onClick={() => {
-                    addToListHandler("Plan to Watch");
+                    AddToListHandler("Plan to Watch");
                   }}
                 >
                   Plan to Watch

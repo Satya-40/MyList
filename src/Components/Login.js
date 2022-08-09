@@ -19,7 +19,6 @@ const Login = (props) => {
 
   const formSubmitHandler = async(event) => {
     event.preventDefault()
-    console.log(username, password);
 
     try{
       const user = await signInWithEmailAndPassword( auth, username, password )

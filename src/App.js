@@ -18,7 +18,6 @@ function App() {
   }
 
   const loginHandler = () => {
-    console.log('Happening');
     setRegisterShower(false)
     setLoginShower(true);
   };

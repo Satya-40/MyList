@@ -50,7 +50,6 @@ const Register = props => {
    
       try{
       const user = await createUserWithEmailAndPassword( auth, username, password )
-      console.log(user)
       } catch(error) {
         console.log(error.message)
       }
