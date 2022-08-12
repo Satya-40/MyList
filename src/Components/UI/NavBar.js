@@ -25,12 +25,6 @@ const NavBar = (props) => {
         <div className={classes.lis}>
           <button className={classes.active}>Home</button>
         </div>
-        <div className={classes.lis}>
-          <button>News</button>
-        </div>
-        <div className={classes.lis}>
-          <button>Contact</button>
-        </div>
         {user ? (
           <div className={classes["lis-Login"]}>
             <button onClick={signOutHandler}>Sign Out</button>

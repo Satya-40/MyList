@@ -17,7 +17,7 @@ const SearchBar = (props) => {
 
   useEffect(() => {
     setLinkForGet(
-      `https://www.googleapis.com/books/v1/volumes?q=${buffer}:keyes&key=AIzaSyBIJw6BRdm6Xuktbjg_OPBihAGa2lJOYmk`
+      `https://www.googleapis.com/books/v1/volumes?q=${buffer}`
     );
   }, [buffer]);
 

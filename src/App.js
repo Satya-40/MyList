@@ -1,5 +1,6 @@
 import { Fragment, useState } from 'react';
 import './App.css';
+import HomeScreen from './Components/HomeScreen';
 import Login from './Components/Login';
 import Register from './Components/Register';
 import SearchBar from './Components/SearchBar';
@@ -42,6 +43,7 @@ function App() {
         {loginShower && <Login onClose={hideLoginHandler} onRegister={registerHandler}/>}
         <NavBar onLogin={loginHandler} />
         <SearchBar setData={setInputHandler} />
+        <HomeScreen/>
         <SearchResult input = {input}/>
     </Fragment>
   );
