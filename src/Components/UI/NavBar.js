@@ -23,7 +23,7 @@ const NavBar = (props) => {
     return (
       <div className={classes.unlis}>
         <div className={classes.lis}>
-          <button className={classes.active}>Home</button>
+          <button className={classes.active} onClick={props.onHome} >Home</button>
         </div>
         {user ? (
           <div className={classes["lis-Login"]}>

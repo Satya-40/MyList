@@ -42,6 +42,7 @@ const SearchBar = (props) => {
     console.log(finalResultsData);
     console.log(linkForGet);
     props.setData(finalResultsData);
+    props.onSearch()
   };
 
   return (

@@ -30,8 +30,7 @@ const HomeScreen = () => {
         const dataJson = await data.json()
         const name = dataJson.items[0].volumeInfo.title
         const image = dataJson.items[0].volumeInfo.imageLinks?.smallThumbnail
-        
-        console.log(name)
+
         arrayDataMapped.push({
           key:key,
           name:name,
@@ -45,23 +44,11 @@ const HomeScreen = () => {
     };
 
     getter();
-  }, [user.uid]);
-
-  // useEffect( () => {
-  //   const get = async(id) => {
-  //   const data = await fetch(
-  //     `https://www.googleapis.com/books/v1/volumes?q=${id}`
-  //      );
-  //   const dataJson = await data.json();
-  //   }
-  // })
-
-
-
+  }, [user?.uid]);
 
   return (
     <Card>
-    <ul>{result.map((a)=>{return <li key={a.key}><img src= {a.image} alt='' />  <p>{a.name}</p>  {a.stage}</li>})}</ul>
+      {result.map((a)=>{return <li key={a.key}><img src= {a.image} alt='' />  <p>{a.name}</p>  {a.stage}</li>})}
     </Card>
   );
 };

@@ -12,6 +12,8 @@ function App() {
   const [input, setInput] = useState([])
   const [loginShower, setLoginShower] = useState(null)
   const [registerShower, setRegisterShower] = useState(null)
+  const [showHomeScreen , setShowHomeScreen] = useState(true)
+  const [showResults, setShowResults] = useState(false)
   
 
   const setInputHandler = data => {
@@ -31,20 +33,29 @@ function App() {
     setLoginShower(false)
     setRegisterShower(true)
   }
- 
 
   const hideRegisterHandler = () => {
     setRegisterShower(false)
+  }
+
+  const hideHomeScreenHandler = () => {
+    setShowHomeScreen(true)
+    setShowResults(false)
+  }
+
+  const showSearchResultsHandler = () => {
+    setShowHomeScreen(false)
+    setShowResults(true)
   }
 
   return (
     <Fragment>
         {registerShower && <Register onClose={hideRegisterHandler} onLogin={loginHandler}/>}
         {loginShower && <Login onClose={hideLoginHandler} onRegister={registerHandler}/>}
-        <NavBar onLogin={loginHandler} />
-        <SearchBar setData={setInputHandler} />
-        <HomeScreen/>
-        <SearchResult input = {input}/>
+        <NavBar onLogin={loginHandler} onHome={hideHomeScreenHandler} />
+        <SearchBar setData={setInputHandler} onSearch={showSearchResultsHandler}  />
+        {showHomeScreen && <HomeScreen/>}
+        {showResults && <SearchResult input = {input}/>}
     </Fragment>
   );
 }
